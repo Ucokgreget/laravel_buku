@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             PenulisSeeder::class,
             KategoriSeeder::class,
             BukuSeeder::class,
+            KategoriBukuSeeder::class,
         ]);
     }
 }

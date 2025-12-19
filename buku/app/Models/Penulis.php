@@ -9,4 +9,15 @@ class Penulis extends Model
 {
     /** @use HasFactory<\Database\Factories\PenulisFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        "nama_penulis",
+        "tanggal_lahir",
+        "asal_daerah",
+        "biografi",
+    ];
+    public function buku()
+    {
+        return $this->hasMany(Buku::class, 'penulis_id');
+    }
 }

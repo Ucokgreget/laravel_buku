@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBukuRequest;
 use App\Http\Requests\UpdateBukuRequest;
 use App\Models\Buku;
+use App\Models\Kategori;
+use App\Models\Penulis;
 
 class BukuController extends Controller
 {
@@ -13,7 +15,10 @@ class BukuController extends Controller
      */
     public function index()
     {
-        //
+        $buku = Buku::with('penulis', 'KategoriBuku.kategori')->get();
+        return view('buku.index', [
+            'buku' => $buku
+        ]);
     }
 
     /**
@@ -21,7 +26,11 @@ class BukuController extends Controller
      */
     public function create()
     {
-        //
+        $kategori = Kategori::all();
+        return view('buku.create', [
+            'kategori' => $kategori,
+            'penulis' => Penulis::all(),
+        ]);
     }
 
     /**
@@ -29,7 +38,17 @@ class BukuController extends Controller
      */
     public function store(StoreBukuRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        if ($request->hasFile('cover_buku')) {
+            $data['cover_buku'] = $request->file('cover_buku')->store('covers', 'public');
+        }
+
+        Buku::create($data);
+
+        return redirect()
+            ->route('buku.index')
+            ->with('success', 'Buku berhasil ditambahkan.');
     }
 
     /**
@@ -37,7 +56,10 @@ class BukuController extends Controller
      */
     public function show(Buku $buku)
     {
-        //
+        $buku = Buku::with('penulis', 'KategoriBuku.kategori')->findOrFail($buku->id);
+        return view('buku.show', [
+            'buku' => $buku
+        ]);
     }
 
     /**

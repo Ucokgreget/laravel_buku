@@ -27,7 +27,7 @@ class BukuSeeder extends Seeder
             "tahun_terbit" => "2009",
             "kota_terbit" => "Jakarta",
             "sinopsis" => "Hafalan Shalat Delisa adalah novel karya Tere Liye yang mengisahkan tentang seorang gadis kecil bernama Delisa yang berjuang untuk tetap bersekolah setelah bencana tsunami melanda desanya.",
-            "cover_buku" => "hafalan_shalat_delisa.jpg",
+            "cover_buku" => "covers/hafalan_sholat.jpeg",
         ]];
         DB::table('buku')->insert($buku);
     }
