@@ -16,12 +16,18 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::firstOrCreate(
-            ['email' => 'test@example.com'],
+            ['email' => 'apalah@example.com'],
             [
-                'name' => 'Test User',
+                'name' => 'apalah',
                 'password' => 'password',
                 'email_verified_at' => now(),
             ]
         );
+
+        $this->call([
+            PenulisSeeder::class,
+            KategoriSeeder::class,
+            BukuSeeder::class,
+        ]);
     }
 }
