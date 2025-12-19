@@ -28,6 +28,8 @@ class StoreBukuRequest extends FormRequest
             "kota_terbit" => ["required", "string", "max:255"],
             "sinopsis" => ["required", "string"],
             "cover_buku" => ["nullable", "image", "max:2048"],
+            "kategori_ids" => ["required", "array"],
+            "kategori_ids.*" => ["exists:kategori,id"],
         ];
     }
 }

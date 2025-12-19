@@ -32,6 +32,15 @@
                         <dt class="text-zinc-500 dark:text-zinc-400">Kota Terbit</dt>
                         <dd class="font-medium text-zinc-900 dark:text-zinc-100">{{ $buku->kota_terbit }}</dd>
                     </div>
+                    <div class="md:col-span-2">
+                        <dt class="text-zinc-500 dark:text-zinc-400">Kategori</dt>
+                        <dd class="font-medium text-zinc-900 dark:text-zinc-100">
+                            @php
+                                $kategoriList = $buku->KategoriBuku->pluck('kategori.nama_kategori')->filter()->implode(', ');
+                            @endphp
+                            {{ $kategoriList ?: '—' }}
+                        </dd>
+                    </div>
                 </dl>
 
                 <div class="space-y-1.5">
